@@ -7,7 +7,7 @@
     <title>Indu Tech</title>
 
     <!-- enlazamos CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <!-- NAVBAR -->
     <nav class="nav">
         <div class="nav-inner">
-            <div class="brand">INDU FEST</div>
+            <div class="brand">INDU TECH</div>
             <ul class="menu">
                 <li><a href="#lineup">LINE-UP</a></li>
                 <li><a href="#tickets">ENTRADAS</a></li>
@@ -25,37 +25,24 @@
         </div>
     </nav>
 
-    <!-- HERO -->
+
     <header class="hero">
-        <!-- video de fondo: cambiá el nombre aqui si querés -->
-        <video id="heroVideo" class="hero-video" autoplay muted loop playsinline>
-      <source src="videos/fondo.mp4" type="video/mp4" />
-      <!-- texto alternativo si el navegador no reproduce video -->
-      Tu navegador no soporta video en background.
-    </video>
+        <!-- fondo usando imagen: pon tu archivo en `images/fondo.jpg` -->
+        <div class="hero-bg" aria-hidden="true"></div>
 
         <div class="overlay"></div>
         <div class="lights"></div>
 
         <div class="hero-content">
-            <h2 class="eyebrow">ELECTRONIC EDITION</h2>
-            <h1 class="title">INDU FEST</h1>
-            <p class="subtitle">La vibra techno definitiva. Luces, energía y atmósfera Ultra.</p>
-
-            <div class="hero-ctas">
-                <a href="#tickets" class="btn-primary">CONSEGUIR TICKETS</a>
-                <button id="muteBtn" class="btn-ghost" aria-pressed="true">🔈 Silenciado</button>
-            </div>
         </div>
 
-        <!-- mensaje si falta el video (hidden por defecto) -->
-        <div id="noVideoMsg" class="no-video hidden">
-            <p>No se encontró el video de fondo. Asegurate de poner <strong>/videos/fondo.mp4</strong></p>
-        </div>
+        <!-- El hero ahora usa una imagen de fondo; pon tu archivo en `images/fondo.jpg` -->
     </header>
 
+
+
     <!-- enlazamos JS -->
-    <script src="js/main.js"></script>
+    <script src="pesuti.js"></script>
 </body>
 
 </html>

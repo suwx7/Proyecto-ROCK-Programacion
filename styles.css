@@ -18,10 +18,9 @@ body {
     color: #fff;
 }
 
-
-/* NAV */
-
 .nav {
+    /* ensure anchored headings appear below fixed nav */
+    scroll-margin-top: 80px;
     position: fixed;
     top: 0;
     width: 100%;
@@ -31,38 +30,45 @@ body {
 }
 
 .nav-inner {
+    position: relative;
     max-width: 1200px;
     margin: 0 auto;
     padding: 18px 24px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
 .brand {
     font-weight: 900;
     letter-spacing: 2px;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
 }
 
 .menu {
     list-style: none;
     display: flex;
     gap: 28px;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
 }
 
 .menu a {
     color: #fff;
     text-decoration: none;
-    font-size: 14px;
-    transition: color .2s;
+    transition: color .18s ease, transform .18s ease;
+    padding: 6px 4px;
 }
 
 .menu a:hover {
-    color: #ff00dd;
+    color: #ffd1ff;
+    transform: translateY(-2px);
 }
-
-
-/* HERO */
 
 .hero {
     position: relative;
@@ -72,14 +78,16 @@ body {
 }
 
 
-/* VIDEO */
+/* image background */
 
-.hero-video {
+.hero-bg {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    /* add subtle dotted pattern on top of the image to give festival texture */
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), url('images/fondo.jpg');
+    background-size: 10px 10px, cover;
+    background-position: 0 0, center center;
+    filter: saturate(1.05) contrast(1.02);
     z-index: 0;
 }
 
@@ -184,9 +192,6 @@ body {
     cursor: pointer;
 }
 
-
-/* mensaje de no video */
-
 .no-video {
     position: absolute;
     bottom: 30px;
@@ -216,5 +221,48 @@ body {
     .hero-ctas {
         flex-direction: column;
         gap: 10px;
+    }
+}
+
+
+/* Page sections layout */
+
+
+/* smooth scroll removed so anchors jump instantly */
+
+html {
+    scroll-behavior: auto;
+}
+
+.site-main {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.02) 100%);
+}
+
+.content-section {
+    padding: 60px 20px;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    /* ensure anchored headings appear below fixed nav */
+    scroll-margin-top: 80px;
+}
+
+.container {
+    max-width: 1100px;
+    width: 100%;
+}
+
+.content-section:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+
+/* Make sure content is readable when nav is fixed */
+
+@media (min-width: 0px) {
+    .site-main {
+        padding-top: 16px;
     }
 }
