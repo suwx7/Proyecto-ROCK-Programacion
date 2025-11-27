@@ -134,3 +134,70 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+/* ===========================
+   FOOTER: Año automático
+=========================== */
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ===========================
+   NEWSLETTER (simulado)
+=========================== */
+document.getElementById("newsletterForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    if(!email){
+        alert("Por favor ingresa un correo válido.");
+        return;
+    }
+    alert("¡Gracias! " + email + " fue agregado (simulado).");
+    this.reset();
+});
+
+/* ===========================
+   CONTACTOS localStorage
+=========================== */
+function cargarContactos(){
+  const lista = document.getElementById("listaContactos");
+  lista.innerHTML = "";
+  const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
+
+  contactos.forEach((c,i)=>{
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <div>
+        <strong>${c.nombre}</strong><br>
+        <span style="color:#bbb">${c.correo}</span>
+      </div>
+      <button onclick="eliminarContacto(${i})"
+        style="padding:6px 12px;background:#ff3b6b;border:none;border-radius:6px;color:white;cursor:pointer">
+        Eliminar
+      </button>
+    `;
+    lista.appendChild(li);
+  });
+}
+
+document.getElementById("contactForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  const nombre = document.getElementById("nombre").value.trim();
+  const correo = document.getElementById("correo").value.trim();
+
+  if(!nombre || !correo) return;
+
+  const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
+  contactos.push({nombre,correo});
+  localStorage.setItem("contactos",JSON.stringify(contactos));
+
+  this.reset();
+  cargarContactos();
+});
+
+function eliminarContacto(i){
+  const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
+  contactos.splice(i,1);
+  localStorage.setItem("contactos",JSON.stringify(contactos));
+  cargarContactos();
+}
+
+// Inicializar al cargar
+cargarContactos();
