@@ -201,3 +201,27 @@ function eliminarContacto(i){
 
 // Inicializar al cargar
 cargarContactos();
+/* ---------- CARRUSEL CONTINUO E INFINITO: Playlists semanales ---------- */
+const track = document.querySelector(".slider-track");
+const speed = 1; // velocidad del slider
+
+let offset = 0;
+
+function moveSlider() {
+    offset -= speed;
+
+    const firstCard = track.children[0];
+    const cardWidth = firstCard.offsetWidth + 25; // +gap
+
+    // Cuando la primera card sale totalmente de pantalla...
+    if (Math.abs(offset) >= cardWidth) {
+        track.appendChild(firstCard); // ...la mandamos al final
+        offset += cardWidth; // ...y corregimos offset
+    }
+
+    track.style.transform = `translateX(${offset}px)`;
+
+    requestAnimationFrame(moveSlider);
+}
+
+moveSlider();
