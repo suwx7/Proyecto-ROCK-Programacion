@@ -3,19 +3,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // To change the page background as the developer, replace the file at `images/fondo.jpg`
     // or update the CSS rule in `styles.css` to point to a different path.
 
-
-
-
     /**
      * MOSK PARTE
      */
     const canvas = document.getElementById("techno-bg");
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas && canvas.getContext ? canvas.getContext("2d") : null;
 
     let particles = [];
     const PARTICLE_COUNT = 80;
 
     function resizeCanvas() {
+        if (!canvas) return;
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
@@ -23,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener("resize", resizeCanvas);
 
     function createParticles() {
+        if (!ctx) return;
         particles = [];
         for (let i = 0; i < PARTICLE_COUNT; i++) {
             particles.push({
@@ -37,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     createParticles();
 
     function drawParticles() {
+        if (!ctx) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         particles.forEach(p => {
@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
         prev() { this.goTo(this.current - 1); }
 
         bindEvents() {
-            this.nextBtn.addEventListener('click', () => this.next());
-            this.prevBtn.addEventListener('click', () => this.prev());
+            this.nextBtn && this.nextBtn.addEventListener('click', () => this.next());
+            this.prevBtn && this.prevBtn.addEventListener('click', () => this.prev());
             this.container.addEventListener('mouseenter', () => this.stopAutoplay());
             this.container.addEventListener('mouseleave', () => this.startAutoplay());
         }
@@ -133,74 +133,96 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Carousel container not found!');
     }
 
-});
-/* ===========================
-   FOOTER: Año automático
-=========================== */
-document.getElementById("year").textContent = new Date().getFullYear();
+    /* ===========================
+       FOOTER: Año automático
+    ============================ */
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-/* ===========================
-   NEWSLETTER (simulado)
-=========================== */
-document.getElementById("newsletterForm").addEventListener("submit", function(e){
-    e.preventDefault();
-    const email = document.getElementById("email").value.trim();
-    if(!email){
-        alert("Por favor ingresa un correo válido.");
-        return;
+    /* ===========================
+       NEWSLETTER (simulado)
+    ============================ */
+    const newsletterForm = document.getElementById("newsletterForm");
+    if (newsletterForm) {
+      newsletterForm.addEventListener("submit", function(e){
+          e.preventDefault();
+          const email = document.getElementById("email").value.trim();
+          if(!email){
+              alert("Por favor ingresa un correo válido.");
+              return;
+          }
+          alert("¡Gracias! " + email + " fue agregado (simulado).");
+          this.reset();
+      });
     }
-    alert("¡Gracias! " + email + " fue agregado (simulado).");
-    this.reset();
-});
 
-/* ===========================
-   CONTACTOS localStorage
-=========================== */
-function cargarContactos(){
-  const lista = document.getElementById("listaContactos");
-  lista.innerHTML = "";
-  const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
+    /* ===========================
+       CONTACTOS localStorage
+    =========================== */
 
-  contactos.forEach((c,i)=>{
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <div>
-        <strong>${c.nombre}</strong><br>
-        <span style="color:#bbb">${c.correo}</span>
-      </div>
-      <button onclick="eliminarContacto(${i})"
-        style="padding:6px 12px;background:#ff3b6b;border:none;border-radius:6px;color:white;cursor:pointer">
-        Eliminar
-      </button>
-    `;
-    lista.appendChild(li);
-  });
-}
+    function cargarContactos() {
+      const lista = document.getElementById("listaContactos");
+      if (!lista) return;
+      lista.innerHTML = "";
+      const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
 
-document.getElementById("contactForm").addEventListener("submit",function(e){
-  e.preventDefault();
-  const nombre = document.getElementById("nombre").value.trim();
-  const correo = document.getElementById("correo").value.trim();
+      contactos.forEach((c,i)=>{
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <div>
+            <strong>${c.nombre}</strong><br>
+            <span style="color:#bbb">${c.correo}</span>
+          </div>
+          <button data-index="${i}"
+            style="padding:6px 12px;background:#ff3b6b;border:none;border-radius:6px;color:white;cursor:pointer">
+            Eliminar
+          </button>
+        `;
+        const btn = li.querySelector("button");
+        btn.addEventListener("click", () => eliminarContacto(i));
+        lista.appendChild(li);
+      });
+    }
 
-  if(!nombre || !correo) return;
+    const form = document.getElementById("contactForm");
 
-  const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
-  contactos.push({nombre,correo});
-  localStorage.setItem("contactos",JSON.stringify(contactos));
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-  this.reset();
-  cargarContactos();
-});
+        const nombre = document.getElementById("nombre").value.trim();
+        const correo = document.getElementById("correo").value.trim();
 
-function eliminarContacto(i){
-  const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
-  contactos.splice(i,1);
-  localStorage.setItem("contactos",JSON.stringify(contactos));
-  cargarContactos();
-}
+        if (!nombre || !correo) return;
 
-// Inicializar al cargar
-cargarContactos();
+        const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
+        contactos.push({ nombre, correo });
+        localStorage.setItem("contactos", JSON.stringify(contactos));
+
+        this.reset();
+        cargarContactos();
+      });
+    }
+
+    window.eliminarContacto = function (i) {
+      const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
+      contactos.splice(i, 1);
+      localStorage.setItem("contactos", JSON.stringify(contactos));
+      cargarContactos();
+    };
+
+    // Inicializar lista de contactos al cargar
+    cargarContactos();
+
+    /* ===========================
+       GUARDAR CONTACTO DEL FOOTER EN LOCALSTORAGE
+    =========================== */
+    const footerContacto = "Indugomytech@gmail.com · +54 9 2966 49-9267";
+    localStorage.setItem("contactoFooter", footerContacto);
+
+}); // fin DOMContentLoaded
+
+
 /* ---------- CARRUSEL CONTINUO E INFINITO: Playlists semanales ---------- */
 const track = document.querySelector(".slider-track");
 const speed = 1; // velocidad del slider
@@ -208,9 +230,11 @@ const speed = 1; // velocidad del slider
 let offset = 0;
 
 function moveSlider() {
+    if (!track) return;
     offset -= speed;
 
     const firstCard = track.children[0];
+    if (!firstCard) return;
     const cardWidth = firstCard.offsetWidth + 25; // +gap
 
     // Cuando la primera card sale totalmente de pantalla...
