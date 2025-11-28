@@ -5,243 +5,188 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Indu Tech</title>
-
-    <!-- enlazamos CSS -->
     <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="nav">
-        <div class="nav-inner">
-            <div class="brand">INDU TECH</div>
-            <ul class="menu">
-                <li><a href="#lineup">LINE-UP</a></li>
-                <li><a href="#tickets">ENTRADAS</a></li>
-                <li><a href="#gallery">GALERÍA</a></li>
-                <li><a href="#info">INFO</a></li>
-            </ul>
+<div id="top"></div>
+
+<!-- NAVBAR -->
+<nav class="nav">
+    <div class="nav-inner">
+        <div class="brand">INDU TECH</div>
+        <ul class="menu">
+            <li><a href="#top">INICIO</a></li>
+            <li><a href="#playlists-section">PLAYLISTS</a></li>
+            <li><a href="#footer">FOOTER</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="overlay"></div>
+    <div class="lights"></div>
+
+    <div class="hero-content">
+        <div class="carousel">
+            <div class="carousel-track">
+                <div class="carousel-slide active"><img src="images/1.jpg" alt="Imagen 1"></div>
+                <div class="carousel-slide"><img src="images/fondo.jpg" alt="Imagen 2"></div>
+                <div class="carousel-slide"><img src="https://picsum.photos/1200/600?random=103" alt="Imagen 3"></div>
+            </div>
+
+            <button class="carousel-btn prev">❮</button>
+            <button class="carousel-btn next">❯</button>
+
+            <div class="carousel-indicators"></div>
         </div>
-    </nav>
+    </div>
+</header>
 
+<!-- CANVAS BACKGROUND -->
+<canvas id="techno-bg"></canvas>
 
-    <header class="hero">
-        <!-- fondo usando imagen: pon tu archivo en `images/fondo.jpg` -->
-        <div class="hero-bg" aria-hidden="true"></div>
+<!-- PLAYLISTS -->
+<section id="playlists-section">
+    <div class="playlist-slider">
 
-        <div class="overlay"></div>
-        <div class="lights"></div>
+        <div class="slider-track">
 
-        <div class="hero-content">
-            <!-- Carrusel 3D -->
-            <div class="carousel">
-                <div class="carousel-track">
-                    <div class="carousel-slide active">
-                        <img src="images/1.jpg" alt="Imagen 1">
+            <div class="playlist">
+                <img src="images/NEON BITS.jpg">
+                <p class="titulo">Neon Beats</p>
+                <p class="descripcion">Techno melódico con synths brillantes.</p>
+                <button class="play-btn" data-audio="audio/neonbeats.mp3">▶</button>
+            </div>
+
+            <div class="playlist">
+                <img src="images/WAREHOUSE CUT.jpg">
+                <p class="titulo">Warehouse Cuts</p>
+                <p class="descripcion">Sonido industrial crudo estilo rave 2000.</p>
+                <button class="play-btn" data-audio="audio/warehouse.mp3">▶</button>
+            </div>
+
+            <div class="playlist">
+                <img src="images/ACID PULSE.jpg">
+                <p class="titulo">Acid Pulse</p>
+                <p class="descripcion">Acid techno rápido con mucho TB-303.</p>
+                <button class="play-btn" data-audio="audio/acidpulse.mp3">▶</button>
+            </div>
+
+            <div class="playlist">
+                <img src="images/AFTERGLOW.jpg">
+                <p class="titulo">Afterglow</p>
+                <p class="descripcion">Techno chill para el final del evento.</p>
+                <button class="play-btn" data-audio="audio/afterglow.mp3">▶</button>
+            </div>
+
+            <!-- repeticiones (dejé solo 1 ciclo para evitar errores visuales) -->
+            <div class="playlist">
+                <img src="images/NEON BITS.jpg">
+                <p class="titulo">Neon Beats</p>
+                <p class="descripcion">Techno melódico con synths brillantes.</p>
+                <button class="play-btn" data-audio="audio/neonbeats.mp3">▶</button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="pesuti.js"></script>
+
+<!-- FOOTER -->
+<footer id="footer" class="footer" role="contentinfo" aria-label="Pie de página">
+    <div class="footer__inner">
+
+        <div>
+            <div class="brand">
+                <div class="brand__logo">UB</div>
+                <div>
+                    <div style="font-weight:700;font-size:16px;margin-bottom:6px">
+                        Indu Tech Rio Gallegos — Experiencias en vivo
                     </div>
-                    <div class="carousel-slide">
-                        <img src="images/fondo.jpg" alt="Imagen 2">
+
+                    <div class="brand__desc">
+                        Creando experiencias musicales inolvidables. Entradas, fechas y noticias sobre tus artistas favoritos.
                     </div>
-                    <div class="carousel-slide">
-                        <img src="https://picsum.photos/1200/600?random=103" alt="Imagen 3">
+
+                    <div style="margin-top:14px">
+                        <div style="font-size:13px;color:var(--muted);margin-bottom:6px">Contacto</div>
+                        <div style="font-size:14px;color:var(--white);">Indugomytech@gmail.com · +54 9 2966 49-9267</div>
                     </div>
                 </div>
-
-                <button class="carousel-btn prev">❮</button>
-                <button class="carousel-btn next">❯</button>
-
-                <div class="carousel-indicators"></div>
             </div>
         </div>
 
-        <!-- El hero ahora usa una imagen de fondo; pon tu archivo en `images/fondo.jpg` -->
-    </header>
+        <!-- LINKS -->
+        <nav class="links">
+            <div class="col">
+                <h4>Entradas</h4>
+                <ul>
+                    <li><a href="#">Comprar entradas</a></li>
+                    <li><a href="#playlists-section">Playlist</a></li>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Reembolsos</a></li>
+                </ul>
+            </div>
 
-    <!-- PARTE DE MOSK-->
-    <!-- Fondo techno animado -->
-    <canvas id="techno-bg"></canvas>
-    <!-- PARTE NAGET-->
-<div class="playlist-slider">
-    <div class="slider-track">
-<div class="playlist">
-    <img src="images/NEON BITS.jpg">
-    <p class="titulo">Neon Beats</p>
-    <p class="descripcion">Techno melódico con synths brillantes.</p>
-    <button class="play-btn" data-audio="audio/neonbeats.mp3">▶</button>
-</div>
+            <div class="col">
+                <h4>Información</h4>
+                <ul>
+                    <li><a href="#lineup">Lineup</a></li>
+                    <li><a href="#info">Ubicación</a></li>
+                    <li><a href="#gallery">Galería</a></li>
+                    <li><a href="#">Prensa</a></li>
+                </ul>
+            </div>
+        </nav>
 
-<div class="playlist">
-    <img src="images/WAREHOUSE CUT.jpg">
-    <p class="titulo">Warehouse Cuts</p>
-    <p class="descripcion">Sonido industrial crudo estilo rave 2000.</p>
-    <button class="play-btn" data-audio="audio/warehouse.mp3">▶</button>
-</div>
+        <!-- NEWSLETTER -->
+        <div class="newsletter">
+            <h4>Newsletter</h4>
+            <p>Recibí novedades, lanzamientos y ofertas exclusivas.</p>
 
-<div class="playlist">
-    <img src="images/ACID PULSE.jpg">
-    <p class="titulo">Acid Pulse</p>
-    <p class="descripcion">Acid techno rápido con mucho TB-303.</p>
-    <button class="play-btn" data-audio="audio/acidpulse.mp3">▶</button>
-</div>
+            <form class="form" id="newsletterForm">
+                <input id="email" name="email" type="email" placeholder="tu@correo.com" required />
+                <button type="submit">Suscribirme</button>
+            </form>
 
-<div class="playlist">
-    <img src="images/AFTERGLOW.jpg">
-    <p class="titulo">Afterglow</p>
-    <p class="descripcion">Techno chill para el final del evento.</p>
-    <button class="play-btn" data-audio="audio/afterglow.mp3">▶</button>
-</div>
-<div class="playlist">
-    <img src="images/NEON BITS.jpg">
-    <p class="titulo">Neon Beats</p>
-    <p class="descripcion">Techno melódico con synths brillantes.</p>
-    <button class="play-btn" data-audio="audio/neonbeats.mp3">▶</button>
-</div>
-
-<div class="playlist">
-    <img src="images/WAREHOUSE CUT.jpg">
-    <p class="titulo">Warehouse Cuts</p>
-    <p class="descripcion">Sonido industrial crudo estilo rave 2000.</p>
-    <button class="play-btn" data-audio="audio/warehouse.mp3">▶</button>
-</div>
-
-<div class="playlist">
-    <img src="images/ACID PULSE.jpg">
-    <p class="titulo">Acid Pulse</p>
-    <p class="descripcion">Acid techno rápido con mucho TB-303.</p>
-    <button class="play-btn" data-audio="audio/acidpulse.mp3">▶</button>
-</div>
-
-<div class="playlist">
-    <img src="images/AFTERGLOW.jpg">
-    <p class="titulo">Afterglow</p>
-    <p class="descripcion">Techno chill para el final del evento.</p>
-    <button class="play-btn" data-audio="audio/afterglow.mp3">▶</button>
-</div>
-<div class="playlist">
-    <img src="images/NEON BITS.jpg">
-    <p class="titulo">Neon Beats</p>
-    <p class="descripcion">Techno melódico con synths brillantes.</p>
-    <button class="play-btn" data-audio="audio/neonbeats.mp3">▶</button>
-</div>
-
-<div class="playlist">
-    <img src="images/WAREHOUSE CUT.jpg">
-    <p class="titulo">Warehouse Cuts</p>
-    <p class="descripcion">Sonido industrial crudo estilo rave 2000.</p>
-    <button class="play-btn" data-audio="audio/warehouse.mp3">▶</button>
-</div>
-
-      
-</div>
-    </div>
-</div>
-
-
-        <!-- puedes duplicar estos artículos; el JS clona cuando sea necesario para mantener el bucle infinito -->
-      </div> <!-- .playlists-track -->
-    </div> <!-- .playlists-wrap -->
-
-  </div> <!-- .container -->
-</section>
-
-
-    <!-- enlazamos JS -->
-    <script src="pesuti.js"></script>
-
-        <!-- ========== FOOTER ========== -->
-<footer class="footer" role="contentinfo" aria-label="Pie de página">
-  <div class="footer__inner">
-
-    <div>
-      <div class="brand" aria-hidden="false">
-        <div class="brand__logo" aria-hidden="true">UB</div>
-        <div>
-          <div style="font-weight:700;font-size:16px;margin-bottom:6px">
-            Indu Tech Rio Gallegos — Experiencias en vivo
-          </div>
-
-          <div class="brand__desc">
-            Creando experiencias musicales inolvidables. Entradas, fechas, y noticias sobre tus artistas favoritos del momento.
-          </div>
-
-          <div style="margin-top:14px">
-            <div style="font-size:13px;color:var(--muted);margin-bottom:6px">Contacto</div>
-            <div style="font-size:14px;color:var(--white);"> Indugomytech@gmail.com · +54 9 2966 49-9267</div>
-          </div>
+            <div class="socials">
+                <a href="#">IG</a>
+                <a href="#">FB</a>
+                <a href="#">X</a>
+            </div>
         </div>
-      </div>
+
     </div>
-
-    <!-- LINKS -->
-    <nav class="links" aria-label="Enlaces de pie de página">
-      <div class="col">
-        <h4>Entradas</h4>
-        <ul>
-          <li><a href="#">Comprar entradas</a></li>
-          <li><a href="#">Playlist</a></li>
-          <li><a href="#">Preguntas frecuentes</a></li>
-          <li><a href="#">Reembolsos</a></li>
-        </ul>
-      </div>
-
-      <div class="col">
-        <h4>Información</h4>
-        <ul>
-          <li><a href="#lineup">Lineup</a></li>
-          <li><a href="#info">Ubicación</a></li>
-          <li><a href="#gallery">Galería</a></li>
-          <li><a href="#">Prensa</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- NEWSLETTER -->
-    <div>
-      <div class="newsletter">
-        <h4>Newsletter</h4>
-        <p>Recibí novedades, lanzamientos y ofertas exclusivas.</p>
-
-        <form class="form" id="newsletterForm">
-          <input id="email" name="email" type="email" placeholder="tu@correo.com" required />
-          <button type="submit">Suscribirme</button>
-        </form>
-
-        <div class="socials">
-          <a href="#" title="Instagram">IG</a>
-          <a href="#" title="Facebook">FB</a>
-          <a href="#" title="Twitter">X</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </footer>
 
-<!-- ========== CONTACTOS ========== -->
+<!-- CONTACTOS -->
 <section id="contactos" class="contact-section">
-  <h2>Contactos</h2>
-  <p>Agregá y guardá contactos que quedan almacenados en tu navegador.</p>
+    <h2>Contactos</h2>
+    <p>Agregá y guardá contactos que quedan almacenados en tu navegador.</p>
 
-  <form id="contactForm" class="contact-form">
-    <input type="text" id="nombre" placeholder="Nombre" required />
-    <input type="email" id="correo" placeholder="Correo" required />
-    <button type="submit">Guardar</button>
-  </form>
+    <form id="contactForm" class="contact-form">
+        <input type="text" id="nombre" placeholder="Nombre" required />
+        <input type="email" id="correo" placeholder="Correo" required />
+        <button type="submit">Guardar</button>
+    </form>
 
-  <ul id="listaContactos" class="contact-list"></ul>
+    <ul id="listaContactos" class="contact-list"></ul>
 </section>
 
-<!-- Bottom legal -->
+<!-- BOTTOM LEGAL -->
 <div class="footer__bottom">
-  <div>© <span id="year"></span> Indu Tech Rio Gallegos. Todos los derechos reservados.</div>
-  <div class="bottom-links">
-    <a href="#">Términos</a>
-    <a href="#">Privacidad</a>
-    <a href="#">Accesibilidad</a>
-  </div>
+    <div>© <span id="year"></span> Indu Tech Rio Gallegos. Todos los derechos reservados.</div>
+    <div class="bottom-links">
+        <a href="#">Términos</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Accesibilidad</a>
+    </div>
 </div>
 
 </body>
-
 </html>
