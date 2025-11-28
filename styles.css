@@ -268,45 +268,6 @@ html {
 }
 
 
-/* ==========================
-   BOTONES DEL HERO (TIAGO)
-========================== */
-
-.hero-buttons {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.hero-btn {
-    padding: 14px 28px;
-    font-size: 18px;
-    font-weight: 700;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
-    background: linear-gradient(90deg, #ff005d, #ff4f00);
-    box-shadow: 0 0 12px #ff005d;
-    transition: 0.25s;
-}
-
-.hero-btn:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 20px #ff005d;
-}
-
-.hero-btn.alt {
-    background: linear-gradient(90deg, #00eaff, #007bff);
-    box-shadow: 0 0 12px #00eaff;
-}
-
-.hero-btn.alt:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 20px #00eaff;
-}
-
-
 /* Parte mosk*/
 
 
@@ -888,6 +849,8 @@ footer,
 html {
     scroll-behavior: smooth;
 }
+
+
 /* ============================================
    SECCIÓN DE NOTICIAS — ESTILO CYBERPUNK
    ============================================ */
@@ -963,7 +926,9 @@ html {
     text-align: right;
 }
 
+
 /* Botón ver más */
+
 .news-btn {
     margin-top: 12px;
     padding: 10px 16px;
