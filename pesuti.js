@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Background image is static and set in CSS: `.hero-bg { background-image: url("images/fondo.jpg"); }`
-    // To change the page background as the developer, replace the file at `images/fondo.jpg`
-    // or update the CSS rule in `styles.css` to point to a different path.
 
     /**
      * MOSK PARTE
@@ -123,14 +120,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Inicializar el carrusel
     const carouselContainer = document.querySelector('.carousel');
     if (carouselContainer) {
-        console.log('Carousel container found, initializing...');
         new Carousel(carouselContainer);
-        console.log('Carousel initialized');
-    } else {
-        console.log('Carousel container not found!');
     }
 
     /* ===========================
@@ -140,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     /* ===========================
-       NEWSLETTER (simulado)
+       NEWSLETTER
     ============================ */
     const newsletterForm = document.getElementById("newsletterForm");
     if (newsletterForm) {
@@ -156,96 +148,66 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    /* ===========================
-       CONTACTOS localStorage
-    =========================== */
-
-    function cargarContactos() {
-      const lista = document.getElementById("listaContactos");
-      if (!lista) return;
-      lista.innerHTML = "";
-      const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
-
-      contactos.forEach((c,i)=>{
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <div>
-            <strong>${c.nombre}</strong><br>
-            <span style="color:#bbb">${c.correo}</span>
-          </div>
-          <button data-index="${i}"
-            style="padding:6px 12px;background:#ff3b6b;border:none;border-radius:6px;color:white;cursor:pointer">
-            Eliminar
-          </button>
-        `;
-        const btn = li.querySelector("button");
-        btn.addEventListener("click", () => eliminarContacto(i));
-        lista.appendChild(li);
-      });
-    }
+    // =======================
+    // CONTACTOS (CORREGIDO)
+    // =======================
 
     const form = document.getElementById("contactForm");
-
     if (form) {
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
 
-        const nombre = document.getElementById("nombre").value.trim();
-        const correo = document.getElementById("correo").value.trim();
+            const nombre = document.getElementById("nombre").value.trim();
+            const correo = document.getElementById("correo").value.trim();
+            const telefono = document.getElementById("telefono").value.trim();
 
-        if (!nombre || !correo) return;
+            if (!nombre || !correo || !telefono) return;
+
+            const nuevoContacto = { nombre, correo, telefono };
+
+            let contactos = JSON.parse(localStorage.getItem("contactos")) || [];
+            contactos.push(nuevoContacto);
+            localStorage.setItem("contactos", JSON.stringify(contactos));
+
+            form.reset();
+            mostrarContactos();
+        });
+    }
+
+    function mostrarContactos() {
+        const lista = document.getElementById("listaContactos");
+        if (!lista) return;
+
+        lista.innerHTML = "";
 
         const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
-        contactos.push({ nombre, correo });
+
+        contactos.forEach((c, index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <div>
+                    <strong>${c.nombre}</strong><br>
+                    ${c.correo}<br>
+                    ${c.telefono}
+                </div>
+                <button class="btn-delete" data-index="${index}">X</button>
+            `;
+            lista.appendChild(li);
+        });
+
+        document.querySelectorAll(".btn-delete").forEach(btn =>
+            btn.addEventListener("click", () => eliminarContacto(btn.dataset.index))
+        );
+    }
+
+    function eliminarContacto(index) {
+        let contactos = JSON.parse(localStorage.getItem("contactos")) || [];
+        contactos.splice(index, 1);
         localStorage.setItem("contactos", JSON.stringify(contactos));
-
-        this.reset();
-        cargarContactos();
-      });
+        mostrarContactos();
     }
 
-    window.eliminarContacto = function (i) {
-      const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
-      contactos.splice(i, 1);
-      localStorage.setItem("contactos", JSON.stringify(contactos));
-      cargarContactos();
-    };
+    // Ejecutar al cargar
+    mostrarContactos();
 
-    // Inicializar lista de contactos al cargar
-    cargarContactos();
-
-    /* ===========================
-       GUARDAR CONTACTO DEL FOOTER EN LOCALSTORAGE
-    =========================== */
-    const footerContacto = "Indugomytech@gmail.com · +54 9 2966 49-9267";
-    localStorage.setItem("contactoFooter", footerContacto);
-
-}); // fin DOMContentLoaded
-
-
-/* ---------- CARRUSEL CONTINUO E INFINITO: Playlists semanales ---------- */
-const track = document.querySelector(".slider-track");
-const speed = 1; // velocidad del slider
-
-let offset = 0;
-
-function moveSlider() {
-    if (!track) return;
-    offset -= speed;
-
-    const firstCard = track.children[0];
-    if (!firstCard) return;
-    const cardWidth = firstCard.offsetWidth + 25; // +gap
-
-    // Cuando la primera card sale totalmente de pantalla...
-    if (Math.abs(offset) >= cardWidth) {
-        track.appendChild(firstCard); // ...la mandamos al final
-        offset += cardWidth; // ...y corregimos offset
-    }
-
-    track.style.transform = `translateX(${offset}px)`;
-
-    requestAnimationFrame(moveSlider);
-}
-
-moveSlider();
+});
