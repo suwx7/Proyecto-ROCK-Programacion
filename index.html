@@ -19,7 +19,7 @@
         <ul class="menu">
             <li><a href="#top">INICIO</a></li>
             <li><a href="#playlists-section">PLAYLISTS</a></li>
-            <li><a href="#footer">FOOTER</a></li>
+            <li><a href="#footer">CONTACTOS</a></li>
         </ul>
     </div>
 </nav>
@@ -83,6 +83,7 @@
                 <button class="play-btn" data-audio="audio/afterglow.mp3">▶</button>
             </div>
 
+            <!-- repetición -->
             <div class="playlist">
                 <img src="images/NEON BITS.jpg">
                 <p class="titulo">Neon Beats</p>
@@ -96,19 +97,30 @@
 
 <script src="pesuti.js"></script>
 
-<!-- ========== CONTACTOS (Ahora antes del footer) ========== -->
+<!-- ========== CONTACTOS (ARRIBA DEL FOOTER) ========== -->
 <section id="contactos" class="contact-section">
   <h2>Contactos</h2>
   <p>Agregá y guardá contactos que quedan almacenados en tu navegador.</p>
 
- <form id="contactForm" class="contact-form">
-    <input type="text" id="nombre" placeholder="Nombre" required />
-    <input type="email" id="correo" placeholder="Correo" required />
-    <input type="text" id="telefono" placeholder="Teléfono" required />
-    <button type="submit">Guardar</button>
-</form>
+  <form id="contactForm" class="contact-form contact-big">
 
+      <!-- Nombre y Apellido -->
+      <input type="text" id="nombre" placeholder="Nombre y Apellido" required />
 
+      <!-- Correo -->
+      <input type="email" id="correo" placeholder="Correo electrónico" required />
+
+      <!-- Teléfono -->
+      <input type="text" id="telefono" placeholder="Teléfono" required />
+
+      <!-- Asunto -->
+      <input type="text" id="asunto" placeholder="Asunto" required />
+
+      <!-- Botón -->
+      <button type="submit">Guardar</button>
+  </form>
+
+  <h3 style="margin-top:20px;">Contactos guardados</h3>
   <ul id="listaContactos" class="contact-list"></ul>
 </section>
 
@@ -184,15 +196,16 @@
   </div>
 </footer>
 
-<!-- Bottom legal -->
+<!-- BOTTOM LEGAL -->
 <div class="footer__bottom">
-  <div>© <span id="year"></span> Indu Tech Rio Gallegos. Todos los derechos reservados.</div>
-  <div class="bottom-links">
-    <a href="#">Términos</a>
-    <a href="#">Privacidad</a>
-    <a href="#">Accesibilidad</a>
-  </div>
+    <div>© <span id="year"></span> Indu Tech Rio Gallegos. Todos los derechos reservados.</div>
+    <div class="bottom-links">
+        <a href="#">Términos</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Accesibilidad</a>
+    </div>
 </div>
 
 </body>
 </html>
+
