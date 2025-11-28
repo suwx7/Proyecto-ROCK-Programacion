@@ -849,3 +849,96 @@ footer,
 html {
     scroll-behavior: smooth;
 }
+/* ============================================
+   SECCIÓN DE NOTICIAS — ESTILO CYBERPUNK
+   ============================================ */
+
+.news-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.news-section h2 {
+    font-size: 38px;
+    letter-spacing: 3px;
+    color: #ff9bff;
+    text-shadow: 0 0 18px #ff00ffcc;
+    margin-bottom: 40px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 30px;
+}
+
+.news-card {
+    background: #14001f;
+    border-radius: 18px;
+    padding: 18px;
+    border: 1px solid #ff00ff55;
+    box-shadow: 0 0 25px #ff00ff66 inset, 0 0 15px #7700ff44;
+    transition: 0.25s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card:hover {
+    transform: scale(1.04) translateY(-6px);
+    box-shadow: 0 0 35px #ff00ffbb inset, 0 0 25px #9d00ff77;
+}
+
+.news-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    filter: brightness(1.15) contrast(1.1);
+}
+
+.news-card .news-title {
+    font-size: 20px;
+    color: #ffb6ff;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.news-card .news-desc {
+    font-size: 14px;
+    color: #d49dff;
+    opacity: 0.85;
+    margin-bottom: 14px;
+}
+
+.news-card .news-date {
+    font-size: 12px;
+    color: #c37cff;
+    opacity: 0.7;
+    margin-top: auto;
+    text-align: right;
+}
+
+/* Botón ver más */
+.news-btn {
+    margin-top: 12px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff00ff, #7a00ff);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff00ff99;
+    transition: 0.25s ease;
+}
+
+.news-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px #ff00ffdd;
+}
