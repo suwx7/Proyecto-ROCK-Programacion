@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.indicatorsContainer = container.querySelector('.carousel-indicators');
 
             this.current = 0;
-            this.interval = options.interval || 5000;
+            this.interval = options.interval || 10000;
             this.autoplay = null;
 
             this.init();
@@ -136,20 +136,20 @@ document.addEventListener('DOMContentLoaded', function() {
     ============================ */
     const newsletterForm = document.getElementById("newsletterForm");
     if (newsletterForm) {
-      newsletterForm.addEventListener("submit", function(e){
-          e.preventDefault();
-          const email = document.getElementById("email").value.trim();
-          if(!email){
-              alert("Por favor ingresa un correo válido.");
-              return;
-          }
-          alert("¡Gracias! " + email + " fue agregado (simulado).");
-          this.reset();
-      });
+        newsletterForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            if (!email) {
+                alert("Por favor ingresa un correo válido.");
+                return;
+            }
+            alert("¡Gracias! " + email + " fue agregado (simulado).");
+            this.reset();
+        });
     }
 
     // =======================
-    // CONTACTOS (CORREGIDO)
+    // CONTACTOS 
     // =======================
 
     const form = document.getElementById("contactForm");
